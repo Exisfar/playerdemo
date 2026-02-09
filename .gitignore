@@ -268,3 +268,4 @@ playerdemo/Makefile
 playerdemo/GeneratedFiles/ui_title.h
 playerdemo/GeneratedFiles/ui_mainwid.h
 /playerdemo/GeneratedFiles
+build

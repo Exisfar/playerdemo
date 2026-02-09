@@ -1200,7 +1200,7 @@ int VideoCtl::stream_component_open(VideoState *is, int stream_index)
 
         if ((ret = decoder_init(&is->auddec, avctx, &is->audioq, is->continue_read_thread)) < 0)
             goto fail;
-        if ((is->ic->iformat->flags & (AVFMT_NOBINSEARCH | AVFMT_NOGENSEARCH | AVFMT_NO_BYTE_SEEK)) && !is->ic->iformat->read_seek) {
+        if (is->ic->iformat->flags & AVFMT_NOTIMESTAMPS) {
             is->auddec.start_pts = is->audio_st->start_time;
             is->auddec.start_pts_tb = is->audio_st->time_base;
         }
@@ -1687,7 +1687,7 @@ void VideoCtl::stream_cycle_channel(VideoState *is, int codec_type)
             switch (codec_type) {
             case AVMEDIA_TYPE_AUDIO:
                 if (st->codecpar->sample_rate != 0 &&
-                    st->codecpar->channels != 0)
+                    st->codecpar->ch_layout.nb_channels != 0)
                     goto the_end;
                 break;
             case AVMEDIA_TYPE_VIDEO:
