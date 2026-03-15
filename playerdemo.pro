@@ -49,10 +49,11 @@ LIBS += \
 }
 
 macx {
-    INCLUDEPATH += /usr/local/Cellar/sdl2/2.24.1/include
-    LIBS += -L/usr/local/Cellar/sdl2/2.24.1/lib -lSDL2
-    INCLUDEPATH += /usr/local/Cellar/ffmpeg@5.1.1/5.1.1_1/include
-    LIBS += -L/usr/local/Cellar/ffmpeg@5.1.1/5.1.1_1/lib -lavcodec -lavdevice -lavfilter -lavformat -lavutil -lswresample -lswscale
+    QMAKE_MACOSX_DEPLOYMENT_TARGET = 15.0
+    INCLUDEPATH += /opt/homebrew/Cellar/sdl2/2.32.10/include
+    LIBS += -L/opt/homebrew/Cellar/sdl2/2.32.10/lib -lSDL2
+    INCLUDEPATH += /opt/homebrew/Cellar/ffmpeg@5/5.1.8_2/include
+    LIBS += -L/opt/homebrew/Cellar/ffmpeg@5/5.1.8_2/lib -lavcodec -lavdevice -lavfilter -lavformat -lavutil -lswresample -lswscale
 }
 
 HEADERS += src/customthread.h \
